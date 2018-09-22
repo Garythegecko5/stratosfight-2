@@ -3,7 +3,7 @@ import random
 from game_components import Player, Bullet, Enemy, Cloud, Enemy_Bullet
 
 chsr = 0
-
+earth = pygame.image.load('img/earth.png')
 pygame.init()
 timer = 1000
 if timer > 0:
@@ -152,17 +152,19 @@ def game():
     def update_score(score):
         text = swanky_small.render("Score: " + str(score), True, YELLOW)
         screen.blit(text, [30, 0])
-
+        screen.blit(earth, [0, 450])
     def blit_level(level):
         if changing_level and pygame.time.get_ticks() < end_time:
             text = swanky_large.render("LEVEL " + str(level), True, YELLOW)
             screen.blit(text, [150, 150])
 
 
+
     level = 1
     Enemy_Bullet.enbcount = level
     # Clear the screen
     screen.fill(SKY)
+
 
     pygame.mixer.music.load('music/song.wav')
     pygame.mixer.music.play(-1)
@@ -290,10 +292,10 @@ def game():
 
 
 
-        if (300 <= score < 600 and level == 1) or \
-                (600 <= score < 1000 and level == 2) or \
-                (1000 <= score < 1300 and level == 3) or \
-                (1300 <= score < 1500 and level == 4):
+        if (200 <= score < 300 and level == 1) or \
+                (300 <= score < 400 and level == 2) or \
+                (500 <= score < 600 and level == 3) or \
+                (600 <= score < 700 and level == 4):
             clear_enemies()
 
             level = level + 1
@@ -307,6 +309,7 @@ def game():
 
         # Clear the screen
         screen.fill(SKY)
+
 
         # Call the update() method on all the sprites
         sprites.update()
@@ -413,6 +416,7 @@ screen = pygame.display.set_mode([screen_width, screen_height])
 clock = pygame.time.Clock()
 
 pygame.display.set_caption('Stratosfight')
+
 game_intro()
 
 while True:
