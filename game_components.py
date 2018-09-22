@@ -3,13 +3,15 @@ import random
 
 class Player(pygame.sprite.Sprite):
     """ This class represents the Player. """
-
+    Pck = 1
     def __init__(self, x, y):
         """ Set up the player on creation. """
         # Call the parent class (Sprite) constructor
         super().__init__()
-
-        self.image = pygame.image.load('img/planey.png')
+        if Player.Pck == 1:
+            self.image = pygame.image.load('img/planey.png')
+        else:
+            self.image = pygame.image.load('img/planey2.png')
         self.rect = self.image.get_rect()
         self.alive = True
         self.rect.x = x

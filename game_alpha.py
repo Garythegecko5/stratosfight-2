@@ -2,7 +2,7 @@ import pygame
 import random
 from game_components import Player, Bullet, Enemy, Cloud, Enemy_Bullet
 
-
+chsr = 0
 
 pygame.init()
 timer = 1000
@@ -94,8 +94,8 @@ def game_choose():
                 pygame.quit()
                 quit()
 
-        choosea_text = swanky_small.render("Choose", True, BLACK)
-        chooseb_text = swanky_small.render("Choose", True, BLACK)
+        choosea_text = swanky_small.render(" Pick", True, BLACK)
+        chooseb_text = swanky_small.render(" Pick", True, BLACK)
         pygame.draw.rect(screen, GREEN,(100,360,100,50))
         pygame.draw.rect(screen, RED, (500, 360, 100, 50))
         screen.blit(choosea_text, [100, 360, 100, 500])
@@ -110,7 +110,7 @@ def game_choose():
             for event in events:
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     choose = False
-                    Player.image = pygame.image.load('img/planey.png')
+                    Player.Pck = 1
 
         else:
             pygame.draw.rect(screen, GREEN, (100,360,100,50))
@@ -125,7 +125,7 @@ def game_choose():
             for event in events:
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     choose = False
-                    Player.image = pygame.image.load('img/planey2.png')
+                    Player.Pck = 2
         else:
             pygame.draw.rect(screen, RED, (500, 360, 100, 50))
             screen.blit(chooseb_text, [510, 360, 100, 50])
@@ -202,6 +202,10 @@ def game():
     sprites.add(player)
     score = 0
     player.alive = True
+    if chsr == 1:
+        Player.image = pygame.image.load('img/planey.png')
+    else:
+        Player.image = pygame.image.load('img/planey2.png')
     # Loop until the user clicks the close button.
     done = False
     while not done:
